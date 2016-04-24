@@ -6,16 +6,16 @@
 %global pkgname oslo-privsep
 
 Name:           python-%{pkgname}
-Version:        1.5.0
-Release:        1%{?dist}
+Version:        XXX
+Release:        XXX
 Summary:        OpenStack library for privilege separation
 
 License:        ASL 2.0
 URL:            http://launchpad.net/oslo
 Source0:        https://pypi.python.org/packages/source/o/%{pypi_name}/%{pypi_name}-%{version}.tar.gz
 BuildArch:      noarch
- 
- 
+
+
 
 %description
 OpenStack library for privilege separation
@@ -110,7 +110,7 @@ Summary:        oslo.privsep documentation
 Documentation for oslo.privsep
 
 %prep
-%autosetup -n %{pypi_name}-%{version}
+%autosetup -n %{pypi_name}-%{upstream_version}
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 rm -rf {,test-}requirements.txt
@@ -121,7 +121,7 @@ rm -rf {,test-}requirements.txt
 %py3_build
 
 %endif
-# generate html docs 
+# generate html docs
 sphinx-build doc/source html
 # remove the sphinx-build leftovers
 rm -rf html/.{doctrees,buildinfo}
@@ -139,7 +139,7 @@ rm -rf html/.{doctrees,buildinfo}
 %{__python2} setup.py test ||:
 
 
-%files -n python2-%{pypi_name} 
+%files -n python2-%{pypi_name}
 %doc README.rst
 %license LICENSE
 %{_bindir}/privsep-helper
@@ -154,7 +154,7 @@ rm -rf html/.{doctrees,buildinfo}
 
 
 %if 0%{?with_python3}
-%files -n python3-%{pypi_name} 
+%files -n python3-%{pypi_name}
 %doc README.rst
 %license LICENSE
 # no python3 binary
@@ -168,8 +168,6 @@ rm -rf html/.{doctrees,buildinfo}
 %endif
 
 %files -n python-%{pypi_name}-doc
-%doc html 
+%doc html
 
 %changelog
-* Wed Apr 20 2016 Haïkel Guémar <hguemar@fedoraproject.org> - 1.5.0-1
-- Initial package.
