@@ -34,7 +34,7 @@ BuildRequires:  python-babel >= 1.3
 BuildRequires:  python-oslo-log >= 1.14.0
 BuildRequires:  python-oslo-i18n >= 2.1.0
 BuildRequires:  python-oslo-config >= 3.9.0
-BuildRequires:  python3-oslotest
+BuildRequires:  python-oslotest
 BuildRequires:  python-oslo-utils >= 3.5.0
 BuildRequires:  python-cffi
 BuildRequires:  python-eventlet
@@ -47,6 +47,7 @@ Requires:       python-oslo-i18n >= 2.1.0
 Requires:       python-oslo-config >= 3.9.0
 Requires:       python-oslo-utils >= 3.5.0
 Requires:       python-cffi
+Requires:       python-enum34
 Requires:       python-msgpack >= 0.4.0
 
 
@@ -56,6 +57,7 @@ OpenStack library for privilege separation
 
 %package -n     python2-%{pypi_name}-tests
 Summary:        OpenStack library for privilege separation tests
+Requires:       python2-%{pypi_name}
 
 %description -n python2-%{pypi_name}-tests
 OpenStack library for privilege separation tests
@@ -98,6 +100,7 @@ OpenStack library for privilege separation
 
 %package -n     python3-%{pypi_name}-tests
 Summary:        OpenStack library for privilege separation tests
+Requires:       python3-%{pypi_name}
 
 %description -n python3-%{pypi_name}-tests
 OpenStack library for privilege separation tests
