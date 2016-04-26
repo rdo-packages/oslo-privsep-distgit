@@ -21,9 +21,9 @@ BuildArch:      noarch
 OpenStack library for privilege separation
 
 
-%package -n     python2-%{pypi_name}
+%package -n     python2-%{pkgname}
 Summary:        OpenStack library for privilege separation
-%{?python_provide:%python_provide python2-%{pypi_name}}
+%{?python_provide:%python_provide python2-%{pkgname}}
 
 BuildRequires:  python2-devel
 BuildRequires:  python-setuptools
@@ -51,23 +51,23 @@ Requires:       python-enum34
 Requires:       python-msgpack >= 0.4.0
 
 
-%description -n python2-%{pypi_name}
+%description -n python2-%{pkgname}
 OpenStack library for privilege separation
 
 
-%package -n     python2-%{pypi_name}-tests
+%package -n     python2-%{pkgname}-tests
 Summary:        OpenStack library for privilege separation tests
-Requires:       python2-%{pypi_name}
+Requires:       python2-%{pkgname}
 
-%description -n python2-%{pypi_name}-tests
+%description -n python2-%{pkgname}-tests
 OpenStack library for privilege separation tests
 
 
 
 %if 0%{?with_python3}
-%package -n     python3-%{pypi_name}
+%package -n     python3-%{pkgname}
 Summary:        OpenStack library for privilege separation
-%{?python_provide:%python_provide python3-%{pypi_name}}
+%{?python_provide:%python_provide python3-%{pkgname}}
 
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
@@ -94,22 +94,22 @@ Requires:       python3-cffi
 Requires:       python3-msgpack >= 0.4.0
 
 
-%description -n python3-%{pypi_name}
+%description -n python3-%{pkgname}
 OpenStack library for privilege separation
 
 
-%package -n     python3-%{pypi_name}-tests
+%package -n     python3-%{pkgname}-tests
 Summary:        OpenStack library for privilege separation tests
-Requires:       python3-%{pypi_name}
+Requires:       python3-%{pkgname}
 
-%description -n python3-%{pypi_name}-tests
+%description -n python3-%{pkgname}-tests
 OpenStack library for privilege separation tests
 %endif
 
 
-%package -n python-%{pypi_name}-doc
+%package -n python-%{pkgname}-doc
 Summary:        oslo.privsep documentation
-%description -n python-%{pypi_name}-doc
+%description -n python-%{pkgname}-doc
 Documentation for oslo.privsep
 
 %prep
@@ -142,7 +142,7 @@ rm -rf html/.{doctrees,buildinfo}
 %{__python2} setup.py test ||:
 
 
-%files -n python2-%{pypi_name}
+%files -n python2-%{pkgname}
 %doc README.rst
 %license LICENSE
 %{_bindir}/privsep-helper
@@ -151,13 +151,13 @@ rm -rf html/.{doctrees,buildinfo}
 %exclude %{python2_sitelib}/oslo_privsep/tests
 
 
-%files -n python2-%{pypi_name}-tests
+%files -n python2-%{pkgname}-tests
 %{python2_sitelib}/oslo_privsep/tests
 
 
 
 %if 0%{?with_python3}
-%files -n python3-%{pypi_name}
+%files -n python3-%{pkgname}
 %doc README.rst
 %license LICENSE
 # no python3 binary
@@ -166,11 +166,11 @@ rm -rf html/.{doctrees,buildinfo}
 %exclude %{python3_sitelib}/oslo_privsep/tests
 
 
-%files -n python3-%{pypi_name}-tests
+%files -n python3-%{pkgname}-tests
 %{python3_sitelib}/oslo_privsep/tests
 %endif
 
-%files -n python-%{pypi_name}-doc
+%files -n python-%{pkgname}-doc
 %doc html
 
 %changelog
