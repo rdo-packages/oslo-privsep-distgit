@@ -162,7 +162,7 @@ rm -rf html/.{doctrees,buildinfo}
 %license LICENSE
 # no python3 binary
 %{python3_sitelib}/oslo_privsep
-%{python3_sitelib}/%{pypi_name}-%{version}-py?.?.egg-info
+%{python3_sitelib}/%{pypi_name}-*-py?.?.egg-info
 %exclude %{python3_sitelib}/oslo_privsep/tests
 
 
