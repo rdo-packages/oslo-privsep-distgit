@@ -49,7 +49,7 @@ Requires:       python-oslo-utils >= 3.5.0
 Requires:       python-cffi
 Requires:       python-enum34
 Requires:       python-msgpack >= 0.4.0
-
+Requires:       python-%{pkgname}-lang = %{version}-%{release}
 
 %description -n python2-%{pkgname}
 OpenStack library for privilege separation
@@ -92,6 +92,7 @@ Requires:       python3-oslo-config >= 3.9.0
 Requires:       python3-oslo-utils >= 3.5.0
 Requires:       python3-cffi
 Requires:       python3-msgpack >= 0.4.0
+Requires:       python-%{pkgname}-lang = %{version}-%{release}
 
 
 %description -n python3-%{pkgname}
@@ -112,8 +113,15 @@ Summary:        oslo.privsep documentation
 %description -n python-%{pkgname}-doc
 Documentation for oslo.privsep
 
+%package  -n python-%{pkgname}-lang
+Summary:   Translation files for Oslo privsep library
+
+%description -n python-%{pkgname}-lang
+Translation files for Oslo privsep library
+
+
 %prep
-%autosetup -n %{pypi_name}-%{upstream_version}
+%autosetup -n %{pypi_name}-%{upstream_version} -S git
 # Remove bundled egg-info
 rm -rf %{pypi_name}.egg-info
 rm -rf {,test-}requirements.txt
@@ -129,11 +137,26 @@ sphinx-build doc/source html
 # remove the sphinx-build leftovers
 rm -rf html/.{doctrees,buildinfo}
 
+# Generate i18n files
+%{__python2} setup.py compile_catalog -d build/lib/oslo_privsep/locale
+
 %install
 %if 0%{?with_python3}
 %py3_install
 %endif
 %py2_install
+
+# Install i18n .mo files (.po and .pot are not required)
+install -d -m 755 %{buildroot}%{_datadir}
+rm -f %{buildroot}%{python2_sitelib}/oslo_privsep/locale/*/LC_*/oslo_privsep*po
+rm -f %{buildroot}%{python2_sitelib}/oslo_privsep/locale/*pot
+mv %{buildroot}%{python2_sitelib}/oslo_privsep/locale %{buildroot}%{_datadir}/locale
+%if 0%{?with_python3}
+rm -rf %{buildroot}%{python3_sitelib}/oslo_privsep/locale
+%endif
+
+# Find language files
+%find_lang oslo_privsep --all-name
 
 %check
 %if 0%{?with_python3}
@@ -172,5 +195,7 @@ rm -rf html/.{doctrees,buildinfo}
 
 %files -n python-%{pkgname}-doc
 %doc html
+
+%files -n python-%{pkgname}-lang -f oslo_privsep.lang
 
 %changelog
