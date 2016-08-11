@@ -5,9 +5,11 @@
 %global pypi_name oslo.privsep
 %global pkgname oslo-privsep
 
+%{!?upstream_version: %global upstream_version %{version}%{?milestone}}
+
 Name:           python-%{pkgname}
-Version:        XXX
-Release:        XXX
+Version:        1.4.0
+Release:        1%{?dist}
 Summary:        OpenStack library for privilege separation
 
 License:        ASL 2.0
@@ -199,3 +201,6 @@ rm -rf %{buildroot}%{python3_sitelib}/oslo_privsep/locale
 %files -n python-%{pkgname}-lang -f oslo_privsep.lang
 
 %changelog
+* Thu Aug 11 2016 Haïkel Guémar <hguemar@fedoraproject.org> - 1.4.0-1
+- Upstream 1.4.0
+
