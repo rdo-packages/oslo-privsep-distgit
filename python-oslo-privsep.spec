@@ -33,9 +33,9 @@ BuildRequires:  python-oslo-sphinx
 BuildRequires:  python-babel >= 1.3
 BuildRequires:  python-oslo-log >= 1.14.0
 BuildRequires:  python-oslo-i18n >= 2.1.0
-BuildRequires:  python-oslo-config >= 3.9.0
+BuildRequires:  python-oslo-config >= 2:3.14.0
 BuildRequires:  python-oslotest
-BuildRequires:  python-oslo-utils >= 3.5.0
+BuildRequires:  python-oslo-utils >= 3.16.0
 BuildRequires:  python-cffi
 BuildRequires:  python-eventlet
 BuildRequires:  python-greenlet
@@ -44,8 +44,8 @@ BuildRequires:  python-msgpack >= 0.4.0
 Requires:       python-babel >= 1.3
 Requires:       python-oslo-log >= 1.14.0
 Requires:       python-oslo-i18n >= 2.1.0
-Requires:       python-oslo-config >= 3.9.0
-Requires:       python-oslo-utils >= 3.5.0
+Requires:       python-oslo-config >= 2:3.14.0
+Requires:       python-oslo-utils >= 3.16.0
 Requires:       python-cffi
 Requires:       python-enum34
 Requires:       python-msgpack >= 0.4.0
@@ -77,9 +77,9 @@ BuildRequires:  python3-oslo-sphinx
 BuildRequires:  python3-babel >= 1.3
 BuildRequires:  python3-oslo-log >= 1.14.0
 BuildRequires:  python3-oslo-i18n >= 2.1.0
-BuildRequires:  python3-oslo-config >= 3.9.0
+BuildRequires:  python3-oslo-config >= 2:3.14.0
 BuildRequires:  python3-oslotest
-BuildRequires:  python3-oslo-utils >= 3.5.0
+BuildRequires:  python3-oslo-utils >= 3.16.0
 BuildRequires:  python3-cffi
 BuildRequires:  python3-eventlet
 BuildRequires:  python3-greenlet
@@ -88,8 +88,8 @@ BuildRequires:  python3-msgpack >= 0.4.0
 Requires:       python3-babel >= 1.3
 Requires:       python3-oslo-log >= 1.14.0
 Requires:       python3-oslo-i18n >= 2.1.0
-Requires:       python3-oslo-config >= 3.9.0
-Requires:       python3-oslo-utils >= 3.5.0
+Requires:       python3-oslo-config >= 2:3.14.0
+Requires:       python3-oslo-utils >= 3.16.0
 Requires:       python3-cffi
 Requires:       python3-msgpack >= 0.4.0
 Requires:       python-%{pkgname}-lang = %{version}-%{release}
