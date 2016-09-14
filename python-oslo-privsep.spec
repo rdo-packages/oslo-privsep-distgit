@@ -168,7 +168,6 @@ rm -rf %{buildroot}%{python3_sitelib}/oslo_privsep/locale
 
 %files -n python2-%{pkgname}
 %doc README.rst
-%license LICENSE
 %{_bindir}/privsep-helper
 %{python2_sitelib}/oslo_privsep
 %{python2_sitelib}/%{pypi_name}-*-py?.?.egg-info
@@ -183,7 +182,6 @@ rm -rf %{buildroot}%{python3_sitelib}/oslo_privsep/locale
 %if 0%{?with_python3}
 %files -n python3-%{pkgname}
 %doc README.rst
-%license LICENSE
 # no python3 binary
 %{python3_sitelib}/oslo_privsep
 %{python3_sitelib}/%{pypi_name}-*-py?.?.egg-info
@@ -195,8 +193,10 @@ rm -rf %{buildroot}%{python3_sitelib}/oslo_privsep/locale
 %endif
 
 %files -n python-%{pkgname}-doc
+%license LICENSE
 %doc html
 
 %files -n python-%{pkgname}-lang -f oslo_privsep.lang
+%license LICENSE
 
 %changelog
