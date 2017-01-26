@@ -1,6 +1,6 @@
-# UUID          Group Name
-False 	Non-Interactive Users
-ec64eb9f36fe9a562f8303b2eb8c714e9f0a520b       	openstack/oslo-privsep-distgit-core
-4e2b4f01513b4f560c5833d096d0584abb9c2225        	openstack/oslo-privsep-distgit-ptl
+# UUID                                  	Group Name
+#
+4e2b4f01513b4f560c5833d096d0584abb9c2225	openstack/oslo-privsep-distgit-ptl
 63673ea7f2ae6a5666566b1ea9f14e473d00f5a9	rdo-core
-global:Registered-Users		Registered Users
+ec64eb9f36fe9a562f8303b2eb8c714e9f0a520b	openstack/oslo-privsep-distgit-core
+global:Registered-Users                 	Registered Users
