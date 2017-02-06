@@ -43,10 +43,12 @@ BuildRequires:  python-greenlet
 BuildRequires:  python-msgpack >= 0.4.0
 
 Requires:       python-babel >= 1.3
-Requires:       python-oslo-log >= 1.14.0
+Requires:       python-eventlet >= 0.18.2
+Requires:       python-greenlet >= 0.3.2
+Requires:       python-oslo-log >= 3.11.0
 Requires:       python-oslo-i18n >= 2.1.0
 Requires:       python-oslo-config >= 2:3.14.0
-Requires:       python-oslo-utils >= 3.16.0
+Requires:       python-oslo-utils >= 3.18.0
 Requires:       python-cffi
 Requires:       python-enum34
 Requires:       python-msgpack >= 0.4.0
@@ -87,10 +89,12 @@ BuildRequires:  python3-greenlet
 BuildRequires:  python3-msgpack >= 0.4.0
 
 Requires:       python3-babel >= 1.3
-Requires:       python3-oslo-log >= 1.14.0
+Requires:       python3-eventlet >= 0.18.2
+Requires:       python3-greenlet >= 0.3.2
+Requires:       python3-oslo-log >= 3.11.0
 Requires:       python3-oslo-i18n >= 2.1.0
 Requires:       python3-oslo-config >= 2:3.14.0
-Requires:       python3-oslo-utils >= 3.16.0
+Requires:       python3-oslo-utils >= 3.18.0
 Requires:       python3-cffi
 Requires:       python3-msgpack >= 0.4.0
 Requires:       python-%{pkgname}-lang = %{version}-%{release}
