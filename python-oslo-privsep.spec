@@ -7,7 +7,7 @@
 %global pkgname oslo-privsep
 
 Name:           python-%{pkgname}
-Version:        1.13.1
+Version:        1.13.2
 Release:        1%{?dist}
 Summary:        OpenStack library for privilege separation
 
@@ -200,6 +200,9 @@ rm -rf %{buildroot}%{python3_sitelib}/oslo_privsep/locale
 %license LICENSE
 
 %changelog
+* Fri Mar 20 2017 Eric Harney <eharney@redhat.com> 1.13.2-1
+- Update to 1.13.2
+
 * Mon Dec 05 2016 Alfredo Moralejo <amoralej@redhat.com> 1.13.1-1
 - Update to 1.13.1
 
