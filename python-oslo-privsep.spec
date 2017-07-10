@@ -30,7 +30,7 @@ BuildRequires:  python2-devel
 BuildRequires:  python-setuptools
 BuildRequires:  python-pbr >= 1.8
 BuildRequires:  python-sphinx
-BuildRequires:  python-oslo-sphinx
+BuildRequires:  python-openstackdocstheme
 BuildRequires:  python-babel >= 1.3
 BuildRequires:  python-oslo-log >= 1.14.0
 BuildRequires:  python-oslo-i18n >= 2.1.0
@@ -75,8 +75,6 @@ Summary:        OpenStack library for privilege separation
 BuildRequires:  python3-devel
 BuildRequires:  python3-setuptools
 BuildRequires:  python3-pbr >= 1.8
-BuildRequires:  python3-sphinx
-BuildRequires:  python3-oslo-sphinx
 BuildRequires:  python3-babel >= 1.3
 BuildRequires:  python3-oslo-log >= 1.14.0
 BuildRequires:  python3-oslo-i18n >= 2.1.0
@@ -138,9 +136,9 @@ rm -rf {,test-}requirements.txt
 
 %endif
 # generate html docs
-sphinx-build doc/source html
+%{__python2} setup.py build_sphinx -b html
 # remove the sphinx-build leftovers
-rm -rf html/.{doctrees,buildinfo}
+rm -rf doc/build/html/.{doctrees,buildinfo}
 
 # Generate i18n files
 %{__python2} setup.py compile_catalog -d build/lib/oslo_privsep/locale
@@ -198,7 +196,7 @@ rm -rf %{buildroot}%{python3_sitelib}/oslo_privsep/locale
 
 %files -n python-%{pkgname}-doc
 %license LICENSE
-%doc html
+%doc doc/build/html
 
 %files -n python-%{pkgname}-lang -f oslo_privsep.lang
 %license LICENSE
