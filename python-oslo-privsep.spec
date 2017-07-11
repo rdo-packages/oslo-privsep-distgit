@@ -204,3 +204,4 @@ rm -rf %{buildroot}%{python3_sitelib}/oslo_privsep/locale
 %license LICENSE
 
 %changelog
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/oslo.privsep/commit/?id=2574b6c0b721a64d5a4c3d3bbdee70e42bd06b39
