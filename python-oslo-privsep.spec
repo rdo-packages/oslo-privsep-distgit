@@ -113,6 +113,9 @@ OpenStack library for privilege separation tests
 
 %package -n python-%{pkgname}-doc
 Summary:        oslo.privsep documentation
+
+BuildRequires:  python-enum34
+
 %description -n python-%{pkgname}-doc
 Documentation for oslo.privsep
 
