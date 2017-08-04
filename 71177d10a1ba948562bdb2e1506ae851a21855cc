@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "5a890539_963912db",
+        "filename": "python-oslo-privsep.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 35,
+      "author": {
+        "id": 113
+      },
+      "writtenOn": "2017-08-04T16:45:55Z",
+      "side": 1,
+      "message": "This is 3.22 in Requires:. Actually, we do not usually set required versions in build requirements, so we could remove them to avoid confusion.",
+      "revId": "71177d10a1ba948562bdb2e1506ae851a21855cc",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
