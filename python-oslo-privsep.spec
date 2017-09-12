@@ -2,7 +2,7 @@
 %if 0%{?fedora} >= 24
 %global with_python3 1
 %endif
-
+%global with_doc 1
 %global pypi_name oslo.privsep
 %global pkgname oslo-privsep
 
@@ -112,7 +112,7 @@ Requires:       python3-%{pkgname}
 OpenStack library for privilege separation tests
 %endif
 
-
+%if 0%{?with_doc}
 %package -n python-%{pkgname}-doc
 Summary:        oslo.privsep documentation
 
@@ -120,6 +120,7 @@ BuildRequires:  python-enum34
 
 %description -n python-%{pkgname}-doc
 Documentation for oslo.privsep
+%endif
 
 %package  -n python-%{pkgname}-lang
 Summary:   Translation files for Oslo privsep library
@@ -140,10 +141,12 @@ rm -rf {,test-}requirements.txt
 %py3_build
 
 %endif
+%if 0%{?with_doc}
 # generate html docs
 %{__python2} setup.py build_sphinx -b html
 # remove the sphinx-build leftovers
 rm -rf doc/build/html/.{doctrees,buildinfo}
+%endif
 
 # Generate i18n files
 %{__python2} setup.py compile_catalog -d build/lib/oslo_privsep/locale
@@ -199,9 +202,11 @@ rm -rf %{buildroot}%{python3_sitelib}/oslo_privsep/locale
 %{python3_sitelib}/oslo_privsep/tests
 %endif
 
+%if 0%{?with_doc}
 %files -n python-%{pkgname}-doc
 %license LICENSE
 %doc doc/build/html
+%endif
 
 %files -n python-%{pkgname}-lang -f oslo_privsep.lang
 %license LICENSE
