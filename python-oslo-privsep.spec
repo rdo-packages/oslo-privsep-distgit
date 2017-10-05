@@ -6,6 +6,8 @@
 %global pypi_name oslo.privsep
 %global pkgname oslo-privsep
 
+%global common_desc OpenStack library for privilege separation
+
 Name:           python-%{pkgname}
 Version:        XXX
 Release:        XXX
@@ -21,7 +23,7 @@ BuildRequires:  git
 
 
 %description
-OpenStack library for privilege separation
+%{common_desc}
 
 
 %package -n     python2-%{pkgname}
@@ -57,7 +59,7 @@ Requires:       python-msgpack >= 0.4.0
 Requires:       python-%{pkgname}-lang = %{version}-%{release}
 
 %description -n python2-%{pkgname}
-OpenStack library for privilege separation
+%{common_desc}
 
 
 %package -n     python2-%{pkgname}-tests
@@ -65,9 +67,9 @@ Summary:        OpenStack library for privilege separation tests
 Requires:       python2-%{pkgname}
 
 %description -n python2-%{pkgname}-tests
-OpenStack library for privilege separation tests
+%{common_desc}
 
-
+This package contains the test files.
 
 %if 0%{?with_python3}
 %package -n     python3-%{pkgname}
@@ -101,7 +103,7 @@ Requires:       python-%{pkgname}-lang = %{version}-%{release}
 
 
 %description -n python3-%{pkgname}
-OpenStack library for privilege separation
+%{common_desc}
 
 
 %package -n     python3-%{pkgname}-tests
@@ -109,7 +111,9 @@ Summary:        OpenStack library for privilege separation tests
 Requires:       python3-%{pkgname}
 
 %description -n python3-%{pkgname}-tests
-OpenStack library for privilege separation tests
+%{common_desc}
+
+This package contains the test files.
 %endif
 
 
