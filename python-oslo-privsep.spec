@@ -9,8 +9,8 @@
 %global common_desc OpenStack library for privilege separation
 
 Name:           python-%{pkgname}
-Version:        XXX
-Release:        XXX
+Version:        1.27.0
+Release:        1%{?dist}
 Summary:        OpenStack library for privilege separation
 
 License:        ASL 2.0
@@ -226,3 +226,6 @@ rm -rf %{buildroot}%{python3_sitelib}/oslo_privsep/locale
 %license LICENSE
 
 %changelog
+* Sat Feb 10 2018 RDO <dev@lists.rdoproject.org> 1.27.0-1
+- Update to 1.27.0
+
