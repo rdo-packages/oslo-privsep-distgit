@@ -38,17 +38,17 @@ BuildRequires:  python2-openstackdocstheme
 BuildRequires:  python2-babel >= 1.3
 BuildRequires:  python2-oslo-log >= 3.36.0
 BuildRequires:  python2-oslo-i18n >= 3.15.3
-BuildRequires:  python2-oslo-config >= 2:5.1.0
+BuildRequires:  python2-oslo-config >= 2:5.2.0
 BuildRequires:  python2-oslotest
 BuildRequires:  python2-oslo-utils >= 3.33.0
 BuildRequires:  python2-eventlet
 BuildRequires:  python2-greenlet
 %if 0%{?fedora} > 0
 BuildRequires:  python2-cffi
-BuildRequires:  python2-msgpack >= 0.4.0
+BuildRequires:  python2-msgpack >= 0.5.0
 %else
 BuildRequires:  python-cffi
-BuildRequires:  python-msgpack >= 0.4.0
+BuildRequires:  python-msgpack >= 0.5.0
 %endif
 
 Requires:       python2-babel >= 1.3
@@ -56,16 +56,16 @@ Requires:       python2-eventlet >= 0.18.2
 Requires:       python2-greenlet >= 0.4.10
 Requires:       python2-oslo-log >= 3.36.0
 Requires:       python2-oslo-i18n >= 3.15.3
-Requires:       python2-oslo-config >= 2:5.1.0
+Requires:       python2-oslo-config >= 2:5.2.0
 Requires:       python2-oslo-utils >= 3.33.0
 %if 0%{?fedora} > 0
 Requires:       python2-enum34
 Requires:       python2-cffi
-Requires:       python2-msgpack >= 0.4.0
+Requires:       python2-msgpack >= 0.5.0
 %else
 Requires:       python-enum34
 Requires:       python-cffi
-Requires:       python-msgpack >= 0.4.0
+Requires:       python-msgpack >= 0.5.0
 %endif
 Requires:       python-%{pkgname}-lang = %{version}-%{release}
 
@@ -93,23 +93,23 @@ BuildRequires:  python3-pbr >= 1.8
 BuildRequires:  python3-babel >= 1.3
 BuildRequires:  python3-oslo-log >= 3.36.0
 BuildRequires:  python3-oslo-i18n >= 3.15.3
-BuildRequires:  python3-oslo-config >= 2:5.1.0
+BuildRequires:  python3-oslo-config >= 2:5.2.0
 BuildRequires:  python3-oslotest
 BuildRequires:  python3-oslo-utils >= 3.33.0
 BuildRequires:  python3-cffi
 BuildRequires:  python3-eventlet
 BuildRequires:  python3-greenlet
-BuildRequires:  python3-msgpack >= 0.4.0
+BuildRequires:  python3-msgpack >= 0.5.0
 
 Requires:       python3-babel >= 1.3
 Requires:       python3-eventlet >= 0.18.2
 Requires:       python3-greenlet >= 0.4.10
 Requires:       python3-oslo-log >= 3.36.0
 Requires:       python3-oslo-i18n >= 3.15.3
-Requires:       python3-oslo-config >= 2:5.1.0
+Requires:       python3-oslo-config >= 2:5.2.0
 Requires:       python3-oslo-utils >= 3.33.0
 Requires:       python3-cffi
-Requires:       python3-msgpack >= 0.4.0
+Requires:       python3-msgpack >= 0.5.0
 Requires:       python-%{pkgname}-lang = %{version}-%{release}
 
 
