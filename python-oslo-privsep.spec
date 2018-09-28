@@ -168,10 +168,10 @@ rm -rf doc/build/html/.{doctrees,buildinfo}
 %{__python2} setup.py compile_catalog -d build/lib/oslo_privsep/locale
 
 %install
+%py2_install
 %if 0%{?with_python3}
 %py3_install
 %endif
-%py2_install
 
 # Install i18n .mo files (.po and .pot are not required)
 install -d -m 755 %{buildroot}%{_datadir}
@@ -194,10 +194,12 @@ rm -rf %{buildroot}%{python3_sitelib}/oslo_privsep/locale
 
 %files -n python2-%{pkgname}
 %doc README.rst
-%{_bindir}/privsep-helper
 %{python2_sitelib}/oslo_privsep
 %{python2_sitelib}/%{pypi_name}-*-py?.?.egg-info
 %exclude %{python2_sitelib}/oslo_privsep/tests
+%if 0%{?with_python3} == 0
+%{_bindir}/privsep-helper
+%endif
 
 
 %files -n python2-%{pkgname}-tests
@@ -208,7 +210,7 @@ rm -rf %{buildroot}%{python3_sitelib}/oslo_privsep/locale
 %if 0%{?with_python3}
 %files -n python3-%{pkgname}
 %doc README.rst
-# no python3 binary
+%{_bindir}/privsep-helper
 %{python3_sitelib}/oslo_privsep
 %{python3_sitelib}/%{pypi_name}-*-py?.?.egg-info
 %exclude %{python3_sitelib}/oslo_privsep/tests
