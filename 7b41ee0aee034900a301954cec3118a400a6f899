@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9abe1de1_d551d00f",
+        "filename": "python-oslo-privsep.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 136,
+      "author": {
+        "id": 128
+      },
+      "writtenOn": "2018-11-27T10:16:42Z",
+      "side": 1,
+      "message": "Unit tests are passing in both centos and fedora so i guess we can get rid of \"||:\". Can be follow up.",
+      "range": {
+        "startLine": 136,
+        "startChar": 27,
+        "endLine": 136,
+        "endChar": 30
+      },
+      "revId": "7b41ee0aee034900a301954cec3118a400a6f899",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
