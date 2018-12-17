@@ -71,6 +71,7 @@ Requires:       python-%{pkgname}-lang = %{version}-%{release}
 # Handle python2 exception
 %if %{pyver} == 2
 Requires:       python-enum34
+Requires:       python2-futures
 %endif
 
 %description -n python%{pyver}-%{pkgname}
