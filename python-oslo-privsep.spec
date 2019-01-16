@@ -14,6 +14,8 @@
 %global pypi_name oslo.privsep
 %global pkgname oslo-privsep
 
+%global with_doc 1
+
 %global common_desc OpenStack library for privilege separation
 
 Name:           python-%{pkgname}
@@ -29,10 +31,8 @@ BuildArch:      noarch
 BuildRequires:  git
 
 
-
 %description
 %{common_desc}
-
 
 %package -n     python%{pyver}-%{pkgname}
 Summary:        OpenStack library for privilege separation
@@ -44,8 +44,6 @@ Obsoletes: python2-%{pkgname} < %{version}-%{release}
 BuildRequires:  python%{pyver}-devel
 BuildRequires:  python%{pyver}-setuptools
 BuildRequires:  python%{pyver}-pbr >= 1.8
-BuildRequires:  python%{pyver}-sphinx
-BuildRequires:  python%{pyver}-openstackdocstheme
 BuildRequires:  python%{pyver}-babel >= 1.3
 BuildRequires:  python%{pyver}-oslo-log >= 3.36.0
 BuildRequires:  python%{pyver}-oslo-i18n >= 3.15.3
@@ -56,7 +54,6 @@ BuildRequires:  python%{pyver}-eventlet
 BuildRequires:  python%{pyver}-greenlet
 BuildRequires:  python%{pyver}-cffi
 BuildRequires:  python%{pyver}-msgpack >= 0.5.0
-
 Requires:       python%{pyver}-babel >= 1.3
 Requires:       python%{pyver}-eventlet >= 0.18.2
 Requires:       python%{pyver}-greenlet >= 0.4.10
@@ -86,9 +83,11 @@ Requires:       python%{pyver}-%{pkgname}
 
 This package contains the test files.
 
+%if 0%{?with_doc}
 %package -n python-%{pkgname}-doc
 Summary:        oslo.privsep documentation
-
+BuildRequires:  python%{pyver}-sphinx
+BuildRequires:  python%{pyver}-openstackdocstheme
 # Handle python2 exception
 %if %{pyver} == 2
 BuildRequires:  python-enum34
@@ -96,6 +95,8 @@ BuildRequires:  python-enum34
 
 %description -n python-%{pkgname}-doc
 Documentation for oslo.privsep
+%endif
+
 
 %package  -n python-%{pkgname}-lang
 Summary:   Translation files for Oslo privsep library
@@ -112,10 +113,13 @@ rm -rf {,test-}requirements.txt
 
 %build
 %{pyver_build}
+
+%if 0%{?with_doc}
 # generate html docs
 %{pyver_bin} setup.py build_sphinx -b html
 # remove the sphinx-build-%{pyver} leftovers
 rm -rf doc/build/html/.{doctrees,buildinfo}
+%endif
 
 # Generate i18n files
 %{pyver_bin} setup.py compile_catalog -d build/lib/oslo_privsep/locale
@@ -147,9 +151,11 @@ mv %{buildroot}%{pyver_sitelib}/oslo_privsep/locale %{buildroot}%{_datadir}/loca
 %files -n python%{pyver}-%{pkgname}-tests
 %{pyver_sitelib}/oslo_privsep/tests
 
+%if 0%{?with_doc}
 %files -n python-%{pkgname}-doc
 %license LICENSE
 %doc doc/build/html
+%endif
 
 %files -n python-%{pkgname}-lang -f oslo_privsep.lang
 %license LICENSE
