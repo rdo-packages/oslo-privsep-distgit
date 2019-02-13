@@ -69,6 +69,7 @@ Requires:       python-%{pkgname}-lang = %{version}-%{release}
 %if %{pyver} == 2
 Requires:       python-enum34
 Requires:       python2-futures
+BuildRequires:  python2-futures
 %endif
 
 %description -n python%{pyver}-%{pkgname}
