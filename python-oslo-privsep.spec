@@ -7,7 +7,7 @@
 %global pkgname oslo-privsep
 
 Name:           python-%{pkgname}
-Version:        1.22.1
+Version:        1.22.2
 Release:        1%{?dist}
 Summary:        OpenStack library for privilege separation
 
@@ -207,6 +207,9 @@ rm -rf %{buildroot}%{python3_sitelib}/oslo_privsep/locale
 %license LICENSE
 
 %changelog
+* Thu Apr 18 2019 RDO <dev@lists.rdoproject.org> 1.22.2-1
+- Update to 1.22.2
+
 * Tue Nov 21 2017 RDO <dev@lists.rdoproject.org> 1.22.1-1
 - Update to 1.22.1
 
