@@ -164,3 +164,4 @@ mv %{buildroot}%{pyver_sitelib}/oslo_privsep/locale %{buildroot}%{_datadir}/loca
 %license LICENSE
 
 %changelog
+# REMOVEME: error caused by commit http://git.openstack.org/cgit/openstack/oslo.privsep/commit/?id=3574210641b257af7916198d00daf21c2ae7947e
