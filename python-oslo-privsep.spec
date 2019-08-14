@@ -119,7 +119,9 @@ rm -rf {,test-}requirements.txt
 
 %if 0%{?with_doc}
 # generate html docs
-sphinx-build-%{pyver} -W -b html doc/source doc/build/html
+# NOTE(jpena): we can re-enable warnings-as-failures once
+# https://review.opendev.org/669444 is in a tagged release
+sphinx-build-%{pyver} -b html doc/source doc/build/html
 # remove the sphinx-build-%{pyver} leftovers
 rm -rf doc/build/html/.{doctrees,buildinfo}
 %endif
