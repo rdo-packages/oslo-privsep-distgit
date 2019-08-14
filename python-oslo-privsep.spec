@@ -89,6 +89,7 @@ This package contains the test files.
 %package -n python-%{pkgname}-doc
 Summary:        oslo.privsep documentation
 BuildRequires:  python%{pyver}-sphinx
+BuildRequires:  python%{pyver}-sphinxcontrib-apidoc
 BuildRequires:  python%{pyver}-openstackdocstheme
 # Handle python2 exception
 %if %{pyver} == 2
@@ -118,7 +119,7 @@ rm -rf {,test-}requirements.txt
 
 %if 0%{?with_doc}
 # generate html docs
-%{pyver_bin} setup.py build_sphinx -b html
+sphinx-build-%{pyver} -W -b html doc/source doc/build/html
 # remove the sphinx-build-%{pyver} leftovers
 rm -rf doc/build/html/.{doctrees,buildinfo}
 %endif
