@@ -1,14 +1,3 @@
-# Macros for py2/py3 compatibility
-%if 0%{?fedora} || 0%{?rhel} > 7
-%global pyver %{python3_pkgversion}
-%else
-%global pyver 2
-%endif
-%global pyver_bin python%{pyver}
-%global pyver_sitelib %python%{pyver}_sitelib
-%global pyver_install %py%{pyver}_install
-%global pyver_build %py%{pyver}_build
-# End of macros for py2/py3 compatibility
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
 
 %global pypi_name oslo.privsep
@@ -34,53 +23,44 @@ BuildRequires:  git
 %description
 %{common_desc}
 
-%package -n     python%{pyver}-%{pkgname}
+%package -n     python3-%{pkgname}
 Summary:        OpenStack library for privilege separation
-%{?python_provide:%python_provide python%{pyver}-%{pkgname}}
-%if %{pyver} == 3
+%{?python_provide:%python_provide python3-%{pkgname}}
 Obsoletes: python2-%{pkgname} < %{version}-%{release}
-%endif
 
-BuildRequires:  python%{pyver}-devel
-BuildRequires:  python%{pyver}-setuptools
-BuildRequires:  python%{pyver}-pbr >= 1.8
-BuildRequires:  python%{pyver}-babel >= 1.3
-BuildRequires:  python%{pyver}-oslo-log >= 3.36.0
-BuildRequires:  python%{pyver}-oslo-i18n >= 3.15.3
-BuildRequires:  python%{pyver}-oslo-config >= 2:5.2.0
-BuildRequires:  python%{pyver}-oslotest
-BuildRequires:  python%{pyver}-oslo-utils >= 3.33.0
-BuildRequires:  python%{pyver}-eventlet
-BuildRequires:  python%{pyver}-greenlet
-BuildRequires:  python%{pyver}-cffi
-BuildRequires:  python%{pyver}-msgpack >= 0.5.0
-Requires:       python%{pyver}-babel >= 1.3
-Requires:       python%{pyver}-eventlet >= 0.18.2
-Requires:       python%{pyver}-greenlet >= 0.4.10
-Requires:       python%{pyver}-oslo-log >= 3.36.0
-Requires:       python%{pyver}-oslo-i18n >= 3.15.3
-Requires:       python%{pyver}-oslo-config >= 2:5.2.0
-Requires:       python%{pyver}-oslo-utils >= 3.33.0
-Requires:       python%{pyver}-cffi
-Requires:       python%{pyver}-msgpack >= 0.5.0
+BuildRequires:  python3-devel
+BuildRequires:  python3-setuptools
+BuildRequires:  python3-pbr >= 1.8
+BuildRequires:  python3-babel >= 1.3
+BuildRequires:  python3-oslo-log >= 3.36.0
+BuildRequires:  python3-oslo-i18n >= 3.15.3
+BuildRequires:  python3-oslo-config >= 2:5.2.0
+BuildRequires:  python3-oslotest
+BuildRequires:  python3-oslo-utils >= 3.33.0
+BuildRequires:  python3-eventlet
+BuildRequires:  python3-greenlet
+BuildRequires:  python3-cffi
+BuildRequires:  python3-msgpack >= 0.5.0
+Requires:       python3-eventlet >= 0.18.2
+Requires:       python3-greenlet >= 0.4.13
+Requires:       python3-oslo-log >= 3.36.0
+Requires:       python3-oslo-i18n >= 3.15.3
+Requires:       python3-oslo-config >= 2:5.2.0
+Requires:       python3-oslo-utils >= 3.33.0
+Requires:       python3-cffi
+Requires:       python3-msgpack >= 0.6.0
 Requires:       python-%{pkgname}-lang = %{version}-%{release}
 
-# Handle python2 exception
-%if %{pyver} == 2
-Requires:       python-enum34
-Requires:       python2-futures
-BuildRequires:  python2-futures
-%endif
 
-%description -n python%{pyver}-%{pkgname}
+%description -n python3-%{pkgname}
 %{common_desc}
 
 
-%package -n     python%{pyver}-%{pkgname}-tests
+%package -n     python3-%{pkgname}-tests
 Summary:        OpenStack library for privilege separation tests
-Requires:       python%{pyver}-%{pkgname}
+Requires:       python3-%{pkgname}
 
-%description -n python%{pyver}-%{pkgname}-tests
+%description -n python3-%{pkgname}-tests
 %{common_desc}
 
 This package contains the test files.
@@ -88,13 +68,9 @@ This package contains the test files.
 %if 0%{?with_doc}
 %package -n python-%{pkgname}-doc
 Summary:        oslo.privsep documentation
-BuildRequires:  python%{pyver}-sphinx
-BuildRequires:  python%{pyver}-sphinxcontrib-apidoc
-BuildRequires:  python%{pyver}-openstackdocstheme
-# Handle python2 exception
-%if %{pyver} == 2
-BuildRequires:  python-enum34
-%endif
+BuildRequires:  python3-sphinx
+BuildRequires:  python3-sphinxcontrib-apidoc
+BuildRequires:  python3-openstackdocstheme
 
 %description -n python-%{pkgname}-doc
 Documentation for oslo.privsep
@@ -115,46 +91,45 @@ rm -rf %{pypi_name}.egg-info
 rm -rf {,test-}requirements.txt
 
 %build
-%{pyver_build}
+%{py3_build}
 
 %if 0%{?with_doc}
 # generate html docs
-# NOTE(jpena): we can re-enable warnings-as-failures once
-# https://review.opendev.org/669444 is in a tagged release
-sphinx-build-%{pyver} -b html doc/source doc/build/html
-# remove the sphinx-build-%{pyver} leftovers
+export PYTHONPATH=.
+sphinx-build -W -b html doc/source doc/build/html
+# remove the sphinx-build leftovers
 rm -rf doc/build/html/.{doctrees,buildinfo}
 %endif
 
 # Generate i18n files
-%{pyver_bin} setup.py compile_catalog -d build/lib/oslo_privsep/locale
+%{__python3} setup.py compile_catalog -d build/lib/oslo_privsep/locale
 
 %install
-%{pyver_install}
+%{py3_install}
 
 # Install i18n .mo files (.po and .pot are not required)
 install -d -m 755 %{buildroot}%{_datadir}
-rm -f %{buildroot}%{pyver_sitelib}/oslo_privsep/locale/*/LC_*/oslo_privsep*po
-rm -f %{buildroot}%{pyver_sitelib}/oslo_privsep/locale/*pot
-mv %{buildroot}%{pyver_sitelib}/oslo_privsep/locale %{buildroot}%{_datadir}/locale
+rm -f %{buildroot}%{python3_sitelib}/oslo_privsep/locale/*/LC_*/oslo_privsep*po
+rm -f %{buildroot}%{python3_sitelib}/oslo_privsep/locale/*pot
+mv %{buildroot}%{python3_sitelib}/oslo_privsep/locale %{buildroot}%{_datadir}/locale
 
 # Find language files
 %find_lang oslo_privsep --all-name
 
 %check
-%{pyver_bin} setup.py test ||:
+%{__python3} setup.py test ||:
 
 
-%files -n python%{pyver}-%{pkgname}
+%files -n python3-%{pkgname}
 %doc README.rst
-%{pyver_sitelib}/oslo_privsep
-%{pyver_sitelib}/%{pypi_name}-*-py?.?.egg-info
-%exclude %{pyver_sitelib}/oslo_privsep/tests
+%{python3_sitelib}/oslo_privsep
+%{python3_sitelib}/%{pypi_name}-*-py?.?.egg-info
+%exclude %{python3_sitelib}/oslo_privsep/tests
 %{_bindir}/privsep-helper
 
 
-%files -n python%{pyver}-%{pkgname}-tests
-%{pyver_sitelib}/oslo_privsep/tests
+%files -n python3-%{pkgname}-tests
+%{python3_sitelib}/oslo_privsep/tests
 
 %if 0%{?with_doc}
 %files -n python-%{pkgname}-doc
