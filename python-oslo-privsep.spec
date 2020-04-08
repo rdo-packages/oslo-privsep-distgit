@@ -56,13 +56,13 @@ BuildRequires:  python%{pyver}-cffi
 BuildRequires:  python%{pyver}-msgpack >= 0.5.0
 Requires:       python%{pyver}-babel >= 1.3
 Requires:       python%{pyver}-eventlet >= 0.18.2
-Requires:       python%{pyver}-greenlet >= 0.4.10
+Requires:       python%{pyver}-greenlet >= 0.4.14
 Requires:       python%{pyver}-oslo-log >= 3.36.0
 Requires:       python%{pyver}-oslo-i18n >= 3.15.3
 Requires:       python%{pyver}-oslo-config >= 2:5.2.0
 Requires:       python%{pyver}-oslo-utils >= 3.33.0
 Requires:       python%{pyver}-cffi
-Requires:       python%{pyver}-msgpack >= 0.5.0
+Requires:       python%{pyver}-msgpack >= 0.6.0
 Requires:       python-%{pkgname}-lang = %{version}-%{release}
 
 # Handle python2 exception
