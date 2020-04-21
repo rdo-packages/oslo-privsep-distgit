@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e6f5690a_6b09d3c9",
+        "filename": "python-oslo-privsep.spec",
+        "patchSetId": 3
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 403
+      },
+      "writtenOn": "2020-04-21T14:30:21Z",
+      "side": 1,
+      "message": "let\u0027s cleanup this also",
+      "range": {
+        "startLine": 44,
+        "startChar": 0,
+        "endLine": 44,
+        "endChar": 36
+      },
+      "revId": "8b8075969dc99f8cbbe8c27df08cd535e1edb851",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7",
+      "unresolved": false
+    }
+  ]
+}
