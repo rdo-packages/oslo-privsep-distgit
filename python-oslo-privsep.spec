@@ -102,7 +102,7 @@ rm -rf doc/build/html/.{doctrees,buildinfo}
 %endif
 
 # Generate i18n files
-%{__python3} setup.py compile_catalog -d build/lib/oslo_privsep/locale
+%{__python3} setup.py compile_catalog -d build/lib/oslo_privsep/locale --domain oslo_privsep
 
 %install
 %{py3_install}
