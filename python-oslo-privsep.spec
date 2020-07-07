@@ -123,7 +123,7 @@ mv %{buildroot}%{python3_sitelib}/oslo_privsep/locale %{buildroot}%{_datadir}/lo
 %files -n python3-%{pkgname}
 %doc README.rst
 %{python3_sitelib}/oslo_privsep
-%{python3_sitelib}/%{pypi_name}-*-py?.?.egg-info
+%{python3_sitelib}/%{pypi_name}-*-py%{python3_version}.egg-info
 %exclude %{python3_sitelib}/oslo_privsep/tests
 %{_bindir}/privsep-helper
 
