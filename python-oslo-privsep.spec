@@ -41,8 +41,8 @@ BuildRequires:  python3-eventlet
 BuildRequires:  python3-greenlet
 BuildRequires:  python3-cffi
 BuildRequires:  python3-msgpack >= 0.5.0
-Requires:       python3-eventlet >= 0.18.2
-Requires:       python3-greenlet >= 0.4.13
+Requires:       python3-eventlet >= 0.21.0
+Requires:       python3-greenlet >= 0.4.14
 Requires:       python3-oslo-log >= 3.36.0
 Requires:       python3-oslo-i18n >= 3.15.3
 Requires:       python3-oslo-config >= 2:5.2.0
