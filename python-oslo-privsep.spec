@@ -8,7 +8,7 @@
 %global common_desc OpenStack library for privilege separation
 
 Name:           python-%{pkgname}
-Version:        2.1.1
+Version:        2.1.2
 Release:        1%{?dist}
 Summary:        OpenStack library for privilege separation
 
@@ -141,6 +141,9 @@ mv %{buildroot}%{python3_sitelib}/oslo_privsep/locale %{buildroot}%{_datadir}/lo
 %license LICENSE
 
 %changelog
+* Wed Oct 07 2020 RDO <dev@lists.rdoproject.org> 2.1.2-1
+- Update to 2.1.2
+
 * Mon Apr 27 2020 RDO <dev@lists.rdoproject.org> 2.1.1-1
 - Update to 2.1.1
 
