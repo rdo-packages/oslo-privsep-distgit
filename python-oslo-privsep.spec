@@ -1,6 +1,8 @@
 %{!?sources_gpg: %{!?dlrn:%global sources_gpg 1} }
 %global sources_gpg_sign 0x2426b928085a020d8a90d0d879ab7008d0896c8a
 %{!?upstream_version: %global upstream_version %{version}%{?milestone}}
+# we are excluding some BRs from automatic generator
+%global excluded_brs doc8 bandit pre-commit hacking flake8-import-order
 
 %global pypi_name oslo.privsep
 %global pkgname oslo-privsep
@@ -14,7 +16,7 @@ Version:        XXX
 Release:        XXX
 Summary:        OpenStack library for privilege separation
 
-License:        ASL 2.0
+License:        Apache-2.0
 URL:            http://launchpad.net/oslo
 Source0:        https://tarballs.openstack.org/%{pypi_name}/%{pypi_name}-%{upstream_version}.tar.gz
 # Required for tarball sources verification
@@ -38,30 +40,10 @@ BuildRequires:  git-core
 
 %package -n     python3-%{pkgname}
 Summary:        OpenStack library for privilege separation
-%{?python_provide:%python_provide python3-%{pkgname}}
 Obsoletes: python2-%{pkgname} < %{version}-%{release}
 
 BuildRequires:  python3-devel
-BuildRequires:  python3-setuptools
-BuildRequires:  python3-pbr >= 1.8
-BuildRequires:  python3-babel >= 1.3
-BuildRequires:  python3-oslo-log >= 3.36.0
-BuildRequires:  python3-oslo-i18n >= 3.15.3
-BuildRequires:  python3-oslo-config >= 2:5.2.0
-BuildRequires:  python3-oslotest
-BuildRequires:  python3-oslo-utils >= 3.33.0
-BuildRequires:  python3-eventlet
-BuildRequires:  python3-greenlet
-BuildRequires:  python3-cffi
-BuildRequires:  python3-msgpack >= 0.5.0
-Requires:       python3-eventlet >= 0.21.0
-Requires:       python3-greenlet >= 0.4.14
-Requires:       python3-oslo-log >= 3.36.0
-Requires:       python3-oslo-i18n >= 3.15.3
-Requires:       python3-oslo-config >= 2:5.2.0
-Requires:       python3-oslo-utils >= 3.33.0
-Requires:       python3-cffi
-Requires:       python3-msgpack >= 0.6.0
+BuildRequires:  pyproject-rpm-macros
 Requires:       python-%{pkgname}-lang = %{version}-%{release}
 
 
@@ -81,10 +63,6 @@ This package contains the test files.
 %if 0%{?with_doc}
 %package -n python-%{pkgname}-doc
 Summary:        oslo.privsep documentation
-BuildRequires:  python3-sphinx
-BuildRequires:  python3-sphinxcontrib-apidoc
-BuildRequires:  python3-openstackdocstheme
-
 %description -n python-%{pkgname}-doc
 Documentation for oslo.privsep
 %endif
@@ -103,26 +81,47 @@ Translation files for Oslo privsep library
 %{gpgverify}  --keyring=%{SOURCE102} --signature=%{SOURCE101} --data=%{SOURCE0}
 %endif
 %autosetup -n %{pypi_name}-%{upstream_version} -S git
-# Remove bundled egg-info
-rm -rf %{pypi_name}.egg-info
-rm -rf {,test-}requirements.txt
+
+sed -i /^[[:space:]]*-c{env:.*_CONSTRAINTS_FILE.*/d tox.ini
+sed -i "s/^deps = -c{env:.*_CONSTRAINTS_FILE.*/deps =/" tox.ini
+sed -i /^minversion.*/d tox.ini
+sed -i /^requires.*virtualenv.*/d tox.ini
+sed -i '/sphinx-build/ s/-W//' tox.ini
+
+# Exclude some bad-known BRs
+for pkg in %{excluded_brs};do
+  for reqfile in doc/requirements.txt test-requirements.txt; do
+    if [ -f $reqfile ]; then
+      sed -i /^${pkg}.*/d $reqfile
+    fi
+  done
+done
+
+# Automatic BR generation
+%generate_buildrequires
+%if 0%{?with_doc}
+  %pyproject_buildrequires -t -e %{default_toxenv},docs
+%else
+  %pyproject_buildrequires -t -e %{default_toxenv}
+%endif
 
 %build
-%{py3_build}
+%pyproject_wheel
 
 %if 0%{?with_doc}
 # generate html docs
-export PYTHONPATH=.
-sphinx-build -W -b html doc/source doc/build/html
+%tox -e docs
 # remove the sphinx-build leftovers
 rm -rf doc/build/html/.{doctrees,buildinfo}
 %endif
 
-# Generate i18n files
-%{__python3} setup.py compile_catalog -d build/lib/oslo_privsep/locale --domain oslo_privsep
 
 %install
-%{py3_install}
+%pyproject_install
+
+# Generate i18n files
+%{__python3} setup.py compile_catalog -d %{buildroot}%{python3_sitelib}/oslo_privsep/locale --domain oslo_privsep
+
 
 # Install i18n .mo files (.po and .pot are not required)
 install -d -m 755 %{buildroot}%{_datadir}
@@ -134,13 +133,13 @@ mv %{buildroot}%{python3_sitelib}/oslo_privsep/locale %{buildroot}%{_datadir}/lo
 %find_lang oslo_privsep --all-name
 
 %check
-%{__python3} setup.py test ||:
+%tox -e %{default_toxenv}
 
 
 %files -n python3-%{pkgname}
 %doc README.rst
 %{python3_sitelib}/oslo_privsep
-%{python3_sitelib}/%{pypi_name}-*-py%{python3_version}.egg-info
+%{python3_sitelib}/%{pypi_name}-*.dist-info
 %exclude %{python3_sitelib}/oslo_privsep/tests
 %{_bindir}/privsep-helper
 
