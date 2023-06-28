@@ -22,6 +22,30 @@
       },
       "revId": "8ea197d80b6da4f15e8a19a41d216f9d7e8e65a0",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "e28ae883_ddbf2656",
+        "filename": "python-oslo-privsep.spec",
+        "patchSetId": 1
+      },
+      "lineNbr": 74,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2023-06-28T12:03:05Z",
+      "side": 0,
+      "message": "Done",
+      "parentUuid": "32cd9c13_03569b68",
+      "range": {
+        "startLine": 74,
+        "startChar": 0,
+        "endLine": 74,
+        "endChar": 6
+      },
+      "revId": "8ea197d80b6da4f15e8a19a41d216f9d7e8e65a0",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
