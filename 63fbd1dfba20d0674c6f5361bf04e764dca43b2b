@@ -16,6 +16,23 @@
       "message": "It seems deps are maintained but one ci job is failing with a error related to privsep, it\u0027d be worthy to check it before merging.\n\nhttps://logserver.rdoproject.org/63/49063/3/check/weirdo-dlrn-master-puppet-scenario001-centos9/e4a7e34/logs/weirdo-project/logs/nova/nova-compute.txt.gz",
       "revId": "63fbd1dfba20d0674c6f5361bf04e764dca43b2b",
       "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "83295f0f_26063ad3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 635
+      },
+      "writtenOn": "2023-07-06T08:07:46Z",
+      "side": 1,
+      "message": "recheck",
+      "revId": "63fbd1dfba20d0674c6f5361bf04e764dca43b2b",
+      "serverId": "270e2033-b340-4cff-9539-693957ebf0e7"
     }
   ]
 }
