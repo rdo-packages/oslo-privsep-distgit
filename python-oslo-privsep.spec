@@ -16,8 +16,8 @@
 %global common_desc OpenStack library for privilege separation
 
 Name:           python-%{pkgname}
-Version:        XXX
-Release:        XXX
+Version:        3.2.0
+Release:        1%{?dist}
 Summary:        OpenStack library for privilege separation
 
 License:        Apache-2.0
@@ -161,3 +161,6 @@ mv %{buildroot}%{python3_sitelib}/oslo_privsep/locale %{buildroot}%{_datadir}/lo
 %license LICENSE
 
 %changelog
+* Fri Sep 01 2023 RDO <dev@lists.rdoproject.org> 3.2.0-1
+- Update to 3.2.0
+
